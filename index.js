@@ -11,6 +11,13 @@ function parseMarkdown(content) {
     html = html.replace(/^## (.*$)/gim, '<h2>$1</h2>');
     html = html.replace(/^# (.*$)/gim, '<h1>$1</h1>');
     
+    // Unordered lists
+    html = html.replace(/^\* (.*$)/gim, '<li>$1</li>');
+    html = html.replace(/^- (.*$)/gim, '<li>$1</li>');
+    
+    // Wrap consecutive list items in <ul> tags
+    html = html.replace(/(<li>.*<\/li>(\n<li>.*<\/li>)*)/gim, '<ul>$1</ul>');
+    
     // Bold and italic
     html = html.replace(/\*\*(.*)\*\*/gim, '<strong>$1</strong>');
     html = html.replace(/\*(.*)\*/gim, '<em>$1</em>');
