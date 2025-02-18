@@ -18,6 +18,10 @@ function parseMarkdown(content) {
     // Wrap consecutive list items in <ul> tags
     html = html.replace(/(<li>.*<\/li>(\n<li>.*<\/li>)*)/gim, '<ul>$1</ul>');
     
+    // Links and images
+    html = html.replace(/!\[([^\]]*)\]\(([^\)]+)\)/gim, '<img src="$2" alt="$1">');
+    html = html.replace(/\[([^\]]+)\]\(([^\)]+)\)/gim, '<a href="$2">$1</a>');
+    
     // Bold and italic
     html = html.replace(/\*\*(.*)\*\*/gim, '<strong>$1</strong>');
     html = html.replace(/\*(.*)\*/gim, '<em>$1</em>');
