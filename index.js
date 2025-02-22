@@ -37,12 +37,23 @@ function convertFile(inputPath, outputPath) {
         const content = fs.readFileSync(inputPath, 'utf8');
         const html = parseMarkdown(content);
         
+        const cssPath = path.join(__dirname, 'template.css');
+        let cssContent = '';
+        try {
+            cssContent = fs.readFileSync(cssPath, 'utf8');
+        } catch (e) {
+            // CSS file not found, use default styles
+        }
+        
         const fullHtml = `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Converted Document</title>
+    <style>
+        ${cssContent}
+    </style>
 </head>
 <body>
     ${html}
