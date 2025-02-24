@@ -11,12 +11,20 @@ function parseMarkdown(content) {
     html = html.replace(/^## (.*$)/gim, '<h2>$1</h2>');
     html = html.replace(/^# (.*$)/gim, '<h1>$1</h1>');
     
+    // Ordered lists
+    html = html.replace(/^\d+\. (.*$)/gim, '<oli>$1</oli>');
+    
     // Unordered lists
     html = html.replace(/^\* (.*$)/gim, '<li>$1</li>');
     html = html.replace(/^- (.*$)/gim, '<li>$1</li>');
     
-    // Wrap consecutive list items in <ul> tags
+    // Wrap consecutive list items in appropriate tags
+    html = html.replace(/(<oli>.*<\/oli>(\n<oli>.*<\/oli>)*)/gim, '<ol>$1</ol>');
     html = html.replace(/(<li>.*<\/li>(\n<li>.*<\/li>)*)/gim, '<ul>$1</ul>');
+    
+    // Convert oli back to li
+    html = html.replace(/<oli>/gim, '<li>');
+    html = html.replace(/<\/oli>/gim, '</li>');
     
     // Links and images
     html = html.replace(/!\[([^\]]*)\]\(([^\)]+)\)/gim, '<img src="$2" alt="$1">');
