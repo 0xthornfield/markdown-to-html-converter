@@ -30,6 +30,9 @@ function parseMarkdown(content) {
     html = html.replace(/!\[([^\]]*)\]\(([^\)]+)\)/gim, '<img src="$2" alt="$1">');
     html = html.replace(/\[([^\]]+)\]\(([^\)]+)\)/gim, '<a href="$2">$1</a>');
     
+    // Inline code
+    html = html.replace(/`([^`]+)`/gim, '<code>$1</code>');
+    
     // Bold and italic
     html = html.replace(/\*\*(.*)\*\*/gim, '<strong>$1</strong>');
     html = html.replace(/\*(.*)\*/gim, '<em>$1</em>');
