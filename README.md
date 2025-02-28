@@ -13,12 +13,16 @@ If no output file is specified, it will create an HTML file with the same name a
 ## Features
 
 - Basic markdown parsing (headers, bold, italic)
-- Simple HTML output with basic styling
+- Support for lists (ordered and unordered)
+- Support for links and images
+- Inline code blocks
+- Built-in CSS styling for clean output
+- Simple HTML output with responsive design
 - Command line interface
 
 ## TODO
 
-- [ ] Support for lists (ordered and unordered)
-- [ ] Support for links and images
+- [ ] Code block syntax highlighting
 - [ ] Custom CSS styling options
 - [ ] Batch conversion
+- [ ] Table support
